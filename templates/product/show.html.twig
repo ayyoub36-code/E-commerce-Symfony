@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{product.name}}
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<div class="row mb-5">
+			<div class="card mt-2 mb-3" style="max-width: 750px;">
+				<div class="row g-0">
+					<div class="col-md-4">
+						<img src="/uploads/{{product.illustration}}" class="img-fluid rounded-start" style="height: 100% !important; width: 100% !important;" alt="{{ product.name }}">
+					</div>
+					<div class="col-md-8 my-auto">
+						<div class="card-body">
+							<h3>{{ product.name|upper }}</h3>
+							<h5 class="card-title">{{ product.subtitle }}</h5>
+							<span>
+								<strong>Prix:</strong>
+								<strong>{{(product.price / 100) |number_format('2')}}</strong>
+								€</span>
+							<hr>
+							<p class="card-text">{{ product.description}}</p>
+
+							<a href="{{ path('add_to_cart', {'id' : product.id}) }}" class="btn btn-primary">Ajouter au panier</a>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row gx-5">
+			<div class="col-md-10">
+				<h5>Nos meilleurs ventes</h5><br>
+				<p>Découvrez nos produits les plus vendus
+				</p><br>
+			</div>
+			{% for product in products %}
+				<div class="col-12 col-md-5 col-lg-3 col-xxl-4 ">
+					<img class="bd-placeholder-img rounded-circle" width="140" height="140" src="/uploads/{{product.illustration}}">
+					<h4>{{ product.name }}</h4>
+					<p>{{ product.description }}</p>
+					<p>
+						<a class="btn btn-primary small" href="{{ path('product', {slug : product.slug}) }}" role="button">Voir le produit &raquo;</a>
+					</p>
+
+				</div>
+			{% endfor %}
+		</div>
+		{# <div class="row" style="height: 170px; "></div> #}
+	</div>
+
+{% endblock %}

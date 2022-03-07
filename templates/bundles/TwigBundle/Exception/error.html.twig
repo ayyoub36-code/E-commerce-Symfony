@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page introuvable - La boutique Marocaine
+{% endblock %}
+
+{% block content %}
+	<div class="block_small border rounded shadow mt-5 p-3">
+    <h1>Ooops Vous êtes perdu !</h1><br>
+		<img src="{{ asset('assets/images/perdu.jpeg')}}" class="mb-3" alt="perdu sur le net">
+         <p class="m-3 py-3"><a href="{{ path('home') }}" class="float-right">Revenir sur Notre Site</a></p>
+	</div>
+   
+	<div class="row" style="height: 100px; "></div>
+{% endblock %}

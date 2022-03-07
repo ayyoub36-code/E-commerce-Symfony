@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande Valider - La Boutique Marocaine
+{% endblock %}
+
+{% block content %}
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 p-3 m-3 border rounded shadow">
+				<h4 class="text-center green ">Commande validation
+					<img src="{{ asset('assets/images/correct.png') }}" class="image-validate my-auto" alt="validate">
+				</h4><br>
+				<p>
+					Bonjour
+					<b>
+						{{order.user.firstname}}
+						{{order.user.lastname}}</b>
+					,
+					<br><br>
+					Nous vous remerçions pour votre commande n°
+					<b>{{ order.reference }}</b>
+					,
+					<br>
+					Une confirmation vient de vous être envoyée par email à l'adresse
+					<b>{{ order.user.email }}</b>
+
+				</p>
+				<hr>
+				Votre commande sera livrée par:
+				<b>{{ order.carrierName }}</b>
+				à l'adresse suivante:<br>
+				<b>
+					{{ order.delivery|raw}}
+				</b>
+				<hr>
+				Pour suivre votre commande rendez-vous sur votre espace commandes
+				<a href="{{ path('account_order') }}">Mes Commandes</a>
+			</div>
+		</div>
+		<div class="row" style="height: 175px; "></div>
+	</div>
+	
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/boutiqueMarocaine.css') }}"/>
+{% endblock %}
+{% block title %}Nos Produits - La Boutique Marocaine
+{% endblock %}
+
+
+{% block content %}
+
+	<div class="row">
+		<div class="col-md-2">
+			<h3>Filtrer</h3>
+			{{ form(form) }}
+			</div>
+			<div class="col-md-10">
+				<h3 class="m-3">Nos Produits
+				</h3>
+				{% if  message  %}
+					<p class="alert alert-info m-5">{{ message }}
+						"{{ recherche|upper }}"</p>
+				{% endif %}
+				<div class="row mb-5">
+					{% for product in products %}
+						<div class="col-md-4">
+							{% include "product/single_product.html.twig" %}
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+
+
+	{% endblock %}

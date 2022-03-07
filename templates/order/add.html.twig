@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paiment de ma Commande - La Boutique Marocaine
+{% endblock %}
+
+{% block javascript %}
+	<script src="https://js.stripe.com/v3/"></script>
+{% endblock %}
+{% block content %}
+	<div class="col-md-10">
+		<h2>Récaputilatif de ma commande</h2>
+		<p>Veuillez vérifier vos informations avant de passer au paiment !</p>
+		<hr></div>
+
+	<div class="row">
+		<div class="col-md-5 m-1 p-3 px-4  border rounded shadow">
+			<h5 class="mt-4">Mon adresse de Livraison</h5>
+			{{delivery|raw}}
+			<br>
+			<hr>
+			<h5 class="mt-4">Mon transporteur</h5>
+			{{carrier.name}}
+			<br>
+			{{carrier.description}}
+			<br>
+			{{(carrier.price / 100)|number_format('2')}}
+			€
+		</div>
+		<div class="col-md-5 p-3 m-1 border rounded shadow">
+			<p class="text-center p-3">
+				<b>Ma commande</b><br>
+				{% set total = null %}
+				{% for key,product in cart %}
+					<div class="row p-2 order-sumary {% if key > 0 %} mt-3 {% endif %}">
+						<div class="col-2"><img src="/uploads/{{product.product.illustration}}" alt="{{ product.product.name }}" height="75px" width="75px"></div>
+						<div class="col-6 my-auto mx-3">
+							<b>{{ product.product.name|upper }}</b>
+							<br>
+							<small>{{ product.product.subtitle }}</small>
+							<br>
+							x{{ product.quantity }}
+						</div>
+						<div class="col-3 my-auto">
+							{{(product.product.price * product.quantity / 100) |number_format('2')}}
+							€
+						</div>
+					</div>
+					{% set total = total + (product.product.price * product.quantity) %}
+				{% endfor %}
+				<hr>
+				<strong>Sous total:
+				</strong>
+				{{(total / 100) |number_format('2')}}
+				€<br>
+				<strong>Livraison:
+				</strong>
+				{{(carrier.price / 100) |number_format('2')}}
+				€
+				<hr>
+				<strong>Total:
+				</strong>
+				{{((total / 100) + (carrier.price / 100)) |number_format('2')}}
+				€
+			</p>
+
+			<button type="submit" id="checkout-button" class="btn btn-success btn-block mt-3">Payer
+				{{((total / 100) + (carrier.price / 100)) |number_format('2')}}
+				€</button>
+		</div>
+	</div>
+{% endblock %}
+
+{# block js de stripe api paiement en ligne  #}
+{% block script %}
+	<script type="text/javascript">
+
+		var stripe = Stripe("pk_test_51KY7K7IszouRGcJsUquDcq4WPyUtCGb8MasPhEKtZXCxhT31d0GT5HrKMyg4xfu0h1fBdlth4PH556rlePo5TaLx00fKxOKd3a");
+var checkoutButton = document.getElementById("checkout-button");
+
+checkoutButton.addEventListener("click", function () {
+fetch("/commande/create-checkout-session/{{ reference }}", {method: "POST"}).then(function (response) {
+return response.json();
+}).then(function (session) {
+if (session.error == 'order') {
+window.location.replace('{{ path('order') }}');
+} else {
+return stripe.redirectToCheckout({sessionId: session.id});
+}
+
+}).then(function (result) {
+if (result.error) {
+alert(result.error.message);
+}
+}).catch(function (error) {
+console.error("Error: ", error);
+});
+
+});
+	</script>
+{% endblock %}

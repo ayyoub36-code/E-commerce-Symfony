@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+{% block carousel %}{% endblock %}
+{% block content %}
+	<!-- Three columns of text below the carousel -->
+	<div class="container overflow-hidden">
+		<div class="row gx-5">
+			<div class="col-md-10">
+				<h5>Nos meilleurs ventes</h5><br>
+				<p>Découvrez nos produits les plus vendus
+				</p><br>
+			</div>
+			{% for product in products %}
+				<div class="col-12 col-md-5 col-lg-3 col-xxl-4 ">
+					<img class="bd-placeholder-img rounded-circle" width="140" height="140" src="/uploads/{{product.illustration}}">
+					<h4>{{ product.name }}</h4>
+					<p>{{ product.description }}</p>
+					<p>
+						<a class="btn btn-primary small" href="{{ path('product', {slug : product.slug}) }}" role="button">Voir le produit &raquo;</a>
+					</p>
+
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+	<!-- /.row -->
+
+	<!-- START THE FEATURETTES -->
+
+	<hr class="featurette-divider">
+
+	<div class="row featurette">
+		<div class="col-md-7">
+			<h2 class="featurette-heading">Nos Partenaires
+			</h2><br>
+			<h5 class="text-muted">Mr Mehdioui</h5>
+			<p class="lead">Grand artisan marocain de Meknès la ville impériale connue par son artisanat de renommée et les petites ruelles de sa médina.</p>
+		</div>
+		<div class="col-md-5">
+			<img src="{{ asset('assets/images/artisan.jpg') }}" class="img-fluid" alt="artisan marocain">
+		</div>
+	</div>
+
+	<hr class="featurette-divider">
+
+	<div class="row featurette">
+		<div class="col-md-7 order-md-2">
+			<h2 class="featurette-heading">Nos Partenaire
+			</h2><br>
+			<h5 class="text-muted">Mr Bouchantouffa.</h5>
+			<p class="lead">Grand potier du nord du maroc né à Fes la cité de 1200 ans de culture !</p>
+		</div>
+		<div class="col-md-5 order-md-1">
+			<img src="{{ asset('assets/images/artisan2.jpg') }}" class="img-fluid" alt="">
+		</div>
+	</div>
+
+	<hr class="featurette-divider"><!-- /END THE FEATURETTES -->{% endblock %}

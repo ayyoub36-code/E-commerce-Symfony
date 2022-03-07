@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+	<div class="col-md-8 block_small border rounded shadow mt-1 px-3">
+		<h1>Inscription</h1>
+		{% if success %}
+			<div class="alert alert-success">
+				{{ success }}
+			</div><hr>
+		{% endif %}
+		{% if fail %}
+			<div class="alert alert-danger">
+				{{ fail }}
+			</div><hr>
+		{% endif %}
+
+		{# utiliser le RegisterType pour creer la view formulaire  #}
+		{{ form(form) }}
+		</div>
+
+	{% endblock %}

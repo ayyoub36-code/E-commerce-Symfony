@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Echec de paiement - La Boutique Marocaine
+{% endblock %}
+
+{% block content %}
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 p-3 m-3 border rounded shadow">
+				<h4 class="text-center red ">Erreur de paiement
+					<img src="{{ asset('assets/images/marque-de-croix.png') }}" class="image-validate my-auto" alt="validate">
+				</h4><br>
+				<p>
+					Bonjour
+					<b>
+						{{order.user.firstname}}
+						{{order.user.lastname}}</b>
+					,
+					<br><br>
+					Il semblerait que votre paiement pour la  commande n°
+					<b>{{ order.reference }}</b>
+					a échoué !
+					<br>
+					Un email vient de vous être envoyé à votre adresse mail
+					<b>{{ order.user.email }}</b>
+
+				</p><br>
+				<a href="{{ path('order') }}" class="btn btn-success btn-block">Réessayer le paiement</a>
+			</div>
+		</div>
+		<div class="row" style="height: 175px; "></div>
+	</div>
+
+{% endblock %}

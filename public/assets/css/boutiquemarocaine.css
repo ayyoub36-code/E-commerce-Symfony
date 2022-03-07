@@ -1,0 +1,85 @@
+body{
+    position: relative;
+}
+.navbar-item-custom, .navbar-item-custom a{
+color: aliceblue;
+}
+.green{
+    color: rgb(45, 185, 45);
+}
+.red{
+    color: red;
+}
+.image-footer{
+    width: 3%;
+    height: 3%;
+}
+.image-validate{
+    width: 3%;
+    height: 3%;
+}
+.footer-custom{
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    padding-top: 25px;
+
+}
+.block_small{
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 10px 15px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.form-check{
+    background-color: rgb(219, 213, 213);
+    padding: 10px 35px !important;
+    margin-top: 7px;
+    
+}
+.form-check-label{
+    color: black;
+}
+.col-form-label{
+    font-weight: bold;
+}
+.order-sumary{
+    background-color: rgb(230, 220, 220);
+    padding: 10px 35px !important;
+    margin-top: 7px;
+}
+.account-item{
+    background-color: #ecf0f1;
+    color: rgb(88, 85, 85);
+}
+.account-item h5{
+    text-transform: uppercase;
+    font-size: 17px;
+   font-family: cursive;
+}
+.account-item a {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: bold;
+    color: #57606f;
+    text-shadow: 1px 1px 2px rgb(219, 217, 223);
+    text-decoration: none;
+}
+.account-item a:hover {
+    color: #1e90ff; 
+}
+.image2-footer{
+    width: 8%;
+    height: 8%;
+}
+.navbar-item-custom a{
+    text-decoration: none;
+}
+.navbar-item-custom a:hover{
+color: rgb(45, 185, 45);
+text-decoration: none;
+}
+.my-nav a:hover{
+    color: rgb(45, 185, 45) !important;
+    text-decoration: none !important;
+}

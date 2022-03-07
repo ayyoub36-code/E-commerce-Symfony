@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nous Contacter - La Boutique Marocaine
+{% endblock %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-md-7">
+			<h3>Nous contacter</h3>
+			{% for message in app.flashes('notice') %}
+				<div class="alert alert-info">
+					{{ message }}</div>
+			{% endfor %}
+			<p>N'hésiter pas si vous avez besoin d'une information de contacter notre service client.</p>
+			{{form(form)}}
+			</div>
+			<div class="col-md-4 border rounded shadow p-3 m-3">
+				<h4 class="text-center">
+					<span class="green">
+						La Boutique</span>
+					<span class="red">
+						Marocaine</span>
+				</h4><hr>
+				<ul class="mt-4 mb-2">
+					<li>
+						<b>Tél :</b>
+						06 60 06 06 06</li>
+					<li>
+						<b>Adresse :</b>
+						83 rue de la Cata 31000.</li>
+					<li>
+						<b>Email :</b>
+						Contact@LaBoutiqueMarocaine.fr</li>
+				</ul>
+				<img src="{{asset('assets/images/bazar2.jpg') }}" class="rounded mx-auto d-block" alt="bazar_maroc">
+
+			</div>
+		</div>
+		<div class="row" style="height: 40px; "></div>
+	{% endblock %}

@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ma commande - La boutique Marocaine
+{% endblock %}
+{% block stylesheets %}
+	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/boutiqueMarocaine.css') }}"/>
+{% endblock %}
+
+{% block content %}
+	<div class="container border rounded shadow p-2">
+		<div class="row mb-3">
+			<div class="col-md-10">
+				<a class="float-right" href="account_order">Mes Commandes</a>
+				<h4>
+					Ma Commande
+					{{ order.reference}}
+				</h4>
+				<hr>
+
+				<ul>
+					<li>
+						<b>
+							Statut de la commande :</b>
+						{% if order.state == 1 %}
+							<span class="badge badge-success">Paiement accepté</span>
+						{% elseif order.state == 2 %}
+							<span class="badge badge-success">Préparation en cours</span>
+						{% elseif order.state == 3 %}
+							<span class="badge badge-success">Livraison en cours</span>
+						{% endif %}
+
+					</li>
+					<li>
+						<b>
+							Commande passé le :
+						</b>
+						<span class="badge badge-success">{{ order.createdAt|date('d/m/Y') }}</span>
+					</li>
+					<li>
+						<b>
+							Référence :</b>
+						<span class="badge badge-success">{{ order.reference }}</span>
+					</li>
+					<li>
+						<b>
+							Transporteur :</b>
+						<span class="badge badge-success">{{ order.carrierName }}</span>
+					</li>
+				</ul>
+				<hr>
+				<h4>Détails :</h4>
+
+				<table class="table table-striped mt-2 mb-2">
+					<thead>
+						<tr>
+							<th scope="col">Produit</th>
+							<th scope="col">Quantité</th>
+							<th scope="col">Prix Unitaire</th>
+							<th scope="col">Total</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for product in order.orderDetails %}
+
+
+							<tr>
+								<td>{{ product.product }}</td>
+								<td>x{{ product.quantity }}</td>
+								<td>{{ (product.price / 100)|number_format(2,',') }}
+									€</td>
+								<td>{{ (product.total / 100)|number_format(2,',')  }}
+									€</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+				<div class="text-right mt-4">
+					<strong>Sous-Total :
+					</strong>
+					{{ (order.getTotal / 100)|number_format(2,',') }}
+					€<br>
+					<strong>Livraison :
+					</strong>
+					{{ (order.carrierPrice / 100)|number_format(2,',') }}
+					€
+					<br>
+					<strong>Total :
+					</strong>
+					{{ ((order.carrierPrice + order.getTotal) / 100)|number_format(2,',') }}
+					€
+				</div>
+
+			</div>
+		</div>
+
+		<div class="row" style="height: 70px; "></div>
+	</div>
+{% endblock %}

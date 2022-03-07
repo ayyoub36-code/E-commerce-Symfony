@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mot de pass oublié - La boutique Marocaine
+{% endblock %}
+
+{% block content %}
+	<div class="block_small border rounded shadow mt-5 p-3">
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-info">
+        {{ message }}</div>
+    {% endfor %}
+		<form method="post">
+			<h1 class="h3 mb-3 font-weight-normal text-center">Réinitialiser mon mot de passe</h1>
+			<b>
+				<label class="mx-2" for="inputEmail">Email</label>
+			</b>
+			<input type="email" name="email" id="inputEmail" class="form-control mb-2" autocomplete="email" placeholder="Merci de saisir votre email" required autofocus>
+			<button class="btn btn-block btn-info mt-4" type="submit">
+				Valider
+			</button>
+			<hr>
+			<p class="text-center">Ou souhaitez-vous <a href="{{ path('app_login') }}">Vous Connecter</a>
+			</p>
+		</form>
+	</div>
+	<div class="row" style="height: 150px; "></div>
+{% endblock %}
+
